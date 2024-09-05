@@ -1,9 +1,11 @@
-//Creación de la clase para las Cuentas Bancarias <
+//Creación de la clase para las Cuentas Bancarias 
 
 public class Cuenta {
     double saldo;
     String numero;
     String tipo;
+
+    // Creación de los metodos 
 
     double consultarSaldo(){
         return saldo;
@@ -25,3 +27,8 @@ public class Cuenta {
        }
 
 }
+
+/*  Comandos para Git 
+git push -u origin main
+git commit -m "first commit"
+*/
