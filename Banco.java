@@ -24,7 +24,7 @@ public class Banco {
 
     // Método para añadir una nueva cuenta
     public void adicionarCuenta(String numeroCuenta, double saldoInicial, String tipo, String cedulaTitular, String nombreTitular) {
-        // Crea un nuevo objeto de tipo Cuenta con los datos proporcionados
+        
         Cuenta nuevaCuenta = new Cuenta(numeroCuenta, saldoInicial, tipo, new Cliente(cedulaTitular, nombreTitular));
         cuentas.add(nuevaCuenta);
     }
@@ -44,7 +44,7 @@ public class Banco {
         // Inicializa una variable para almacenar el mayor saldo encontrado y el nombre del cliente
         double mayorSaldo = 0;
         String clienteMayorSaldo = "";
-        // Recorre la lista de cuentas  y compara los saldos
+       
         for (Cuenta cuenta : cuentas) {
             if (cuenta.getSaldo() > mayorSaldo) {
                 mayorSaldo = cuenta.getSaldo();
