@@ -1,48 +1,56 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Banco {
+    String nombre;
+    List<Cuenta> cuentas;
 
-    ArrayList<Cuenta> cuentas;
-
-    public Banco(){
+    // Constructor
+    public Banco(String nombre) {
+        this.nombre = nombre;
         this.cuentas = new ArrayList<>();
-    }    
+    }
 
-
-    public Cuenta buscarCuenta (String numero){
-
-        // CTRL + K + C
-        // for (int i = 0; i < this.cuentas.size(); i++){
-
-        //     if(numero.equals(cuentas.get(i).getNumero())){
-        //         return this.cuentas.get(i);
-        //     }
-
-        // }
-
-        for (Cuenta cuenta : this.cuentas){
-            if (cuenta.getNumero().equals(numero)){
+    // Método para buscar una cuenta
+    public Cuenta buscarCuenta(String numeroCuenta) {
+       
+        for (Cuenta cuenta : cuentas) {
+            if (cuenta.getNumero().equals(numeroCuenta)) {
                 return cuenta;
             }
         }
         return null;
-
     }
 
+    // Método para añadir una nueva cuenta
+    public void adicionarCuenta(String numeroCuenta, double saldoInicial, String tipo, String cedulaTitular, String nombreTitular) {
+        // Crea un nuevo objeto de tipo Cuenta con los datos proporcionados
+        Cuenta nuevaCuenta = new Cuenta(numeroCuenta, saldoInicial, tipo, new Cliente(cedulaTitular, nombreTitular));
+        cuentas.add(nuevaCuenta);
+    }
 
-    public boolean adicionarCuenta(String numero, double saldoInicial, String tipo){
-
-        if (this.buscarCuenta(numero) != null ){
-            return false;
-
-        } else {
-
-            Cuenta cuenta = new Cuenta(tipo, numero, saldoInicial);
-            cuentas.add(cuenta);
-            return false;
+    // Método para calcular el total de dinero
+    public double consultarTotalDinero() {
+        double total = 0;
+        // Recorre la lista de cuentas y suma los saldos de cada cuenta
+        for (Cuenta cuenta : cuentas) {
+            total += cuenta.getSaldo();
         }
+        return total;
     }
 
-    
-
+    // Método para encontrar el cliente con el mayor saldo
+    public String consultarClienteMayorSaldo() {
+        // Inicializa una variable para almacenar el mayor saldo encontrado y el nombre del cliente
+        double mayorSaldo = 0;
+        String clienteMayorSaldo = "";
+        // Recorre la lista de cuentas  y compara los saldos
+        for (Cuenta cuenta : cuentas) {
+            if (cuenta.getSaldo() > mayorSaldo) {
+                mayorSaldo = cuenta.getSaldo();
+                clienteMayorSaldo = cuenta.getTitular().getNombre();
+            }
+        }
+        return clienteMayorSaldo;
+    }
 }
